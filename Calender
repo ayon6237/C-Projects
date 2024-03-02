@@ -1,1 +1,70 @@
+#include<stdio.h>
+int i,j,count=0;
+
+int days(int year)
+{
+    int day;
+    day=(((year - 1) * 365) + ((year - 1) / 4) - ((year - 1) / 100) + ((year) / 400) + 1) % 7;
+    return day;
+}
+int main()
+{
+    int year,startDay;
+    printf("Enter your year : ");
+    scanf("%d",&year);
+    printf("****************CALENDER %d***************",year);
+
+
+
+    char* ch[]={"January","February","March",
+    "April","May","June","July","August","September","October","November","December"
+    };
+    int day[]={31,28,31,30,31,30,31,31,30,31,30,31};
+
+
+    //LeapYear Check******************************
+
+    if((year%4==0&&year%100!=0) || year%400==0)
+    {
+        day[1]=29;
+    }
+
+
+
+    startDay = days(year);
+
+    for(i=0;i<12;i++)
+    {
+        printf("\n\n\t\t%s\n\n",ch[i]);
+        printf("\n  SUN  MON  TUS  WED  THUS  FRI  SAT\n");
+        printf("\n");
+
+        for(count=0;count<startDay;count++)
+            printf("     ");
+
+              for(j=1;j<=day[i];j++)
+                {
+                   printf("%4d ",j);
+                   count++;
+                    if(count>=7)
+                   {
+                       printf("\n");
+                       count=0;
+                   }
+                   startDay = count;
+
+
+
+                }
+
+
+
+
+
+    }
+
+
+
+    return 0;
+}
 
